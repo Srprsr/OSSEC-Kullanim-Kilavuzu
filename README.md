@@ -74,6 +74,11 @@ Eğer log dosyasında her bir satırda bir entry varsa syslog kullanın.
 > * djb-multilog
 > * multi-line
 
+##### command
+Komut çalıştırmak için kullanılır. Bu komutun bütün çıkış komutu veya tam komut kullanılıp kullanılmadığını bağlı olarak bir veya daha fazla log mesajı olarak okunacaktır.
+
+**İzin Verilen** Tüm commandline ve argümanlar.
+
 ##Rootkit Detection
 OSSEC’in bir diğer görevi de sistemlerde periyodik olarak rootkit taraması yapmaktır. Bu şekilde sunucuların herhangi birinde  bir rootkit, trojan ya da virus’ün varlığı anında tespit edilir ve bildirilir.
 
