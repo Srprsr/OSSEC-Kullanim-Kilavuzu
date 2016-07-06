@@ -106,6 +106,26 @@ Bir event çıktısı, bir iç veri tabanında depolanacaktır. Aynı olay alın
 ##### only-future-events
 Sadece eventchannel kayıt formatı ile kullanılır. OSSEC son durdurulan beri OSSEC-logcollector cevapsız tüm eventleri okuyacaktır eventchannel log biçimi başlar varsayılan olarak. Bu durumun ortaya çıkmaması için *only-future-events*'i *yes* olarak ayarlamanız gerekir. Bu şekilde OSSEC sadece logcollector başladıktan sonra meydana gelen olayları alacaksınız.
 
+```
+<localfile>
+  <location>System</location>
+  <log_format>eventchannel</log_format>
+  <only-future-events>yes</only-future-events>
+</localfile>
+```
+
+##### query
+Sadece eventchannel kayıt formatı ile kullanılır. OSSEC işleyecek olayları filtrelemek için aşağıdaki gibi ID'sini daha önce microsoft dökümanlarından keşfettiğin bir event numarası bulup, aşağıdaki gibi oluşturmalısınız.
+
+Örneğin, aşağıdaki yapılandırma sadece 7040 kimliğine sahip eventleri işleyecek:
+```
+<localfile>
+  <location>System</location>
+  <log_format>eventchannel</log_format>
+  <query>Event/System[EventID=7040]</query>
+</localfile>
+```
+
 ##Rootkit Detection
 OSSEC’in bir diğer görevi de sistemlerde periyodik olarak rootkit taraması yapmaktır. Bu şekilde sunucuların herhangi birinde  bir rootkit, trojan ya da virus’ün varlığı anında tespit edilir ve bildirilir.
 
