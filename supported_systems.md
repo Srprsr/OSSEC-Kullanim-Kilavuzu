@@ -4,16 +4,16 @@ OSSEC supports the following operating systems and log formats.
 #Operating Systems
 The following operating systems are supported by the OSSEC agent:
 
-*GNU/Linux (all distributions, including RHEL, Ubuntu, Slackware, Debian, etc)
-*Windows XP, 2003, Vista, 2008, 2012
-*VMWare ESX 3.0,3.5 (including CIS checks)
-*FreeBSD (all current versions)
-*OpenBSD (all current versions)
-*NetBSD (all current versions)
-*Solaris 2.7, 2.8, 2.9 and 10
-*AIX 5.2 and 5.3
-*Mac OS X 10.x
-*HP-UX 11
+* GNU/Linux (all distributions, including RHEL, Ubuntu, Slackware, Debian, etc)
+* Windows XP, 2003, Vista, 2008, 2012
+* VMWare ESX 3.0,3.5 (including CIS checks)
+* FreeBSD (all current versions)
+* OpenBSD (all current versions)
+* NetBSD (all current versions)
+* Solaris 2.7, 2.8, 2.9 and 10
+* AIX 5.2 and 5.3
+* Mac OS X 10.x
+* HP-UX 11
 
 #Devices supported via Syslog
 These systems/devices are also supported via remote syslog:
