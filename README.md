@@ -26,3 +26,10 @@ OSSEC’in bir diğer görevi de sistemlerde periyodik olarak rootkit taraması 
 
 ##Active Response
 OSSEC’in aktive response özelliği sistemde oluşan bir problem için otomatik aksiyonlar almak üzere kullanılmaktadır. Örneğin web sunucunuzu tarayan bir saldırgan’ı, web loglarından tespit edip saldırgan’ın *ip adresinin firewall üzerinden bloklanması OSSEC’in active response özelliği* ile mümkündür.
+
+#OSSEC BİLEŞENLERİ
+* [Manager](#manager)
+* [Agent](#agent)
+* [Agentless](#agentless)
+* [Virtualization/Vmware](#Virtualization-Vmware)
+* [Syslogs Üzerinden Monitoring](#syslogs--zerinden-monitoring)
