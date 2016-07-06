@@ -7,7 +7,7 @@ OSSEC, Trend Micro tarafından desteklenen, tamamen açık kaynak kodlu, standal
 
 # TEMEL ÖZELLİKLERİ
 * [Dosya Bütünlük Kontrolü](#dosya-butunluk-kontrolu)
-* Log Monitoring
+* [Log Monitoring](#log-monitoring)
 * Rootkit Detection
 * Active Response
 
@@ -15,3 +15,6 @@ OSSEC, Trend Micro tarafından desteklenen, tamamen açık kaynak kodlu, standal
 File Integrity Checking ya da File Integrity Monitoring (FIM) olarak adlandırılan bu işlem, temel olarak sistemde şu ya da bu şekilde değişikliğe uğrayan dosyaların tespit edilmesi ve bu değişikliklerin sistem yöneticisine bildirilmesini hedeflemektedir.
 
 Sisteminize sızmaya çalışan her tür atağın ortak özelliğinin sistem üzerinde bir takım dosyaları değiştirmek ya da sisteme bir takım dosyalar eklemek olduğu düşünülürse, HIDS’ler için dosya bütünlük kontrolü en önemli bileşenlerden birisidir ve sistemlerinizdeki değişiklikleri oldukları an tespit etmek büyük öneme sahiptir.
+
+##Log Monitoring
+Meydana gelen değişikliklerin tespit edilmesi üzere kontrolü gereken bir diğer nokta ise log dosyalarıdır. OSSEC bu amaca yönelik olarak sistem loglarını izleyip analiz eder ve herhangi bir problem tespit edilmesi halinde alarm üreterek sistem yöneticisini bilgilendirir. Örnek olarak sisteme bir paket kurulduğu zaman ya da web sunucusuna ait loglara bir sızma girişimini işaret eden satırlar düşmeye başladığı zaman alarm üretilir ve durumun farkında olmanız sağlanır.
