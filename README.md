@@ -6,14 +6,6 @@
 OSSEC, Trend Micro tarafından desteklenen, tamamen açık kaynak kodlu, standalone çalışabildiği gibi, agent/master yapısı ile merkezi yönetim de sağlayabilen bir host-based saldırı tespit sistemidir. Temel olarak log analizi, dosya bütünlük kontrolü, rootkit tespiti, gerçek zamanlı alarm üretme ve tespit edilen saldırılara karşılık active response özelliği ile aksiyonlar alma gibi görevleri yerine getiren OSSEC, hali hazırda kullanılan SIM/SIEM platformları ile de entegre edilebilmektedir.
 
  **OSSEC, native olarak  tüm *nix ( Linux, MacOS, Solaris, HP-UX, AIX, Vmware ESX) ve Windows platformlarda çalışabilmekte**, agentless modu sayesinde de router, switch gibi network cihazlarını da monitor edebilmektedir.
- 
-
-# Nasıl Yüklenir?
-
-```
-$ (ossec_version="2.8.2" ; ossec_checksum="a0f403270f388fbc6a0a4fd46791b1371f5597ec" ; cd /tmp/ && wget https://github.com/ossec/ossec-hids/archive/${ossec_version}.tar.gz && mv ${ossec_version}.tar.gz ossec-hids-${ossec_version}.tar.gz && checksum=$(sha1sum ossec-hids-${ossec_version}.tar.gz | cut -d" " -f1); if [ $checksum == $ossec_checksum ]; then tar xfz ossec-hids-${ossec_version}.tar.gz && cd ossec-hids-${ossec_version} && sudo ./install.sh ; else "Wrong checksum. Download again or check if file has been tampered with."; fi)
-
-```
 
 # TEMEL ÖZELLİKLERİ
 * [Dosya Bütünlük Kontrolü](#dosya-butunluk-kontrolu)
@@ -65,3 +57,22 @@ Ossec uzak sistemlerden syslog üzerinden iletilen logları alarak analiz edebil
 #OSSEC MİMARİSİ
 Ossec’in çalışma prensibini açıklamak üzere aşağıdaki şekilde güzel bir çizim bulunmakta:
 ![alt text](https://www.bilgio.com/wp-content/uploads/2014/04/ossec-arch21.jpg "OSSEC mimari")
+
+
+# Nasıl Yüklenir?
+
+```
+$ (ossec_version="2.8.2" ; ossec_checksum="a0f403270f388fbc6a0a4fd46791b1371f5597ec" ; cd /tmp/ && wget https://github.com/ossec/ossec-hids/archive/${ossec_version}.tar.gz && mv ${ossec_version}.tar.gz ossec-hids-${ossec_version}.tar.gz && checksum=$(sha1sum ossec-hids-${ossec_version}.tar.gz | cut -d" " -f1); if [ $checksum == $ossec_checksum ]; then tar xfz ossec-hids-${ossec_version}.tar.gz && cd ossec-hids-${ossec_version} && sudo ./install.sh ; else "Wrong checksum. Download again or check if file has been tampered with."; fi)
+
+```
+Ben kurulumları Master/Agent modunda olmak üzere iki adet CentOS 6.5 kullanarak yapacağım. Ancak kurulum yönergeleri her dağıtım için hemen hemen aynı olduğundan siz kendi tercih ettiğiniz bir dağıtımı kullanabilirisiniz. (Farklılık gösteren yönergeleri ayrıca bildireceğim.)
+
+##Gereksinimler
+OSSEC gcc, libc ve OpenSSL paketlerine ihtiyaç duyuyor ki bu paketler genellikle default kurulumlarda gelmektedir. Bunlar dışında:
+
+##Debian/Ubuntu
+Debian tabanlı sistemlerde build-essential paketinin yüklü olması gerekmektedir:
+```
+# apt-get install build-essential
+```
+ve ayrıca Ossec’i database desteği ile kullanacaksanız mysql-dev ya da postgresql-dev paketlerinden birisi yüklü olmalıdır.
