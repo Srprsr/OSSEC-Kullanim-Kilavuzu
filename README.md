@@ -175,3 +175,165 @@ Bu komutu verdiğiniz zaman ilk olarak kurulumu hangi dilde yapmak istediğimizi
 (en/br/cn/de/el/es/fr/hu/it/jp/nl/pl/ru/sr/tr) [en]: en
 ```
 Dili seçtikten sonra aşağıdaki karşılama ekranı gelecektir. Bu ekranda ENTER ile devam ediyoruz.
+
+```
+OSSEC HIDS v2.7.1 Installation Script - http://www.ossec.net  
+
+You are about to start the installation process of the OSSEC HIDS. You must have a C compiler pre-installed in your system. If you have any questions or comments, please send an e-mail to dcid@ossec.net (or daniel.cid@gmail.com).  
+
+- System: Linux CromLab-OssecManager 2.6.32-431.11.2.el6.x86_64 
+- User: root 
+- Host: CromLab-OssecManager  
+
+-- Press ENTER to continue or Ctrl-C to abort. --
+```
+
+Ardından ne tip bir kurulum yapmak istediğimizi soran aşağıdaki çıktı görüntülenecektir. Biz server kurulumu yaptığımız için burada “server” yazıp enter ile devam ediyoruz:
+```
+1- What kind of installation do you want (server, agent, local, hybrid or help)? server
+```
+
+Ardından, Ossec’in nereye kurulmasını istediğinizi soran aşağıdaki ekran gelecektir. Burayı default olarak bırakalım, bu yüzden “ENTER” ile devam ediyoruz:
+
+```
+2- Setting up the installation environment.  
+
+- Choose where to install the OSSEC HIDS [/var/ossec]:
+```
+
+Üçüncü bölüm HIDS yapılandırmaları ile ilgili bölümdür ve ilk olarak aşağıdaki ekran çıktısı ile uyarıları email olarak alıp almak istemediğimiz sorulacaktır. Bu kısımda “y” ile email notification özelliğini devreye alalım; emaillerin gönderilmesini istediğimiz posta adresini ve posta sunucumuzun ip adresini girelim. Bu noktada posta sunucusu olarak relay izniniz olan bir sunucu kullanabilir ya da localhost üzerinden gönderilmesini sağlayabilirsiniz.
+
+```
+3- Configuring the OSSEC HIDS.  
+
+3.1- Do you want e-mail notification? (y/n) [y]: y 
+- What's your e-mail address? email@adresiniz.com 
+- What's your SMTP server ip/host? 127.0.0.1
+```
+
+Bir sonraki tanımlama aşağıdaki çıktıda görüldüğü gibi dosya bütünlük kontrolünü devreye almak isteyip istemediğimizi soran bölümdür ki burada “y” diyerek bu özelliği aktif ediyoruz.
+
+```
+3.2- Do you want to run the integrity check daemon? (y/n) [y]: y  
+
+- Running syscheck (integrity check daemon).
+```
+
+Ardından, benzer şekilde rootkit detection özelliğini aktifleştirmek isteyip istemediğimiz sorulur; buna da “y” diyoruz.
+
+```
+3.3- Do you want to run the rootkit detection engine? (y/n) [y]: y  
+
+- Running rootcheck (rootkit detection).
+```
+
+Bir sonraki aşama active response özelliğini kullanmak isteyip istemediğimizi sorar. Bu konu gelişmiş ve hata durumunda problemlere neden olabilecek bir konu olduğu için bu yazıda devreye almayacağız (Bu konuya ayrı bir makale ile değineceğim). Bu nedenle “n” diyelim.
+
+```
+3.4- Active response allows you to execute a specific command based on the events received. For example,  you can block an IP address or disable access for  a specific user.  
+
+More information at:  http://www.ossec.net/en/manual.html#active-response  - Do you want to enable active response? (y/n) [y]: n
+```
+
+Bir sonraki tanımlama uzak sistemlerden syslog üzerinden log alıp almak istemediğimiz sorar. Bu özelliği “y” diyerek aktif hale getiriyoruz:
+
+```
+3.5- Do you want to enable remote syslog (port 514 udp)? (y/n) [y]:  
+
+- Remote syslog enabled
+```
+
+Son çıktı ise aşağıda görüldüğü gibi hangi logların analiz edileceğini belirten ve “ENTER” ile devam edeceğimiz kısımdır.
+
+```
+3.6- Setting the configuration to analyze the following logs: 
+-- /var/log/messages 
+-- /var/log/secure 
+-- /var/log/maillog  
+
+- If you want to monitor any other file, just change the ossec.conf and add a new localfile entry. Any questions about the configuration can be answered by visiting us online at http://www.ossec.net .  
+
+--- Press ENTER to continue ---
+```
+
+Bundan sonra kurulum işlemine başlanacaktır ve tamamlandıktan sonra aşağıdaki bilgi ekranı görüntülenecektir.
+
+```
+- System is Redhat Linux. 
+- Init script modified to start OSSEC HIDS during boot.  
+- Configuration finished properly.  
+- To start OSSEC HIDS: /var/ossec/bin/ossec-control start  
+- To stop OSSEC HIDS: /var/ossec/bin/ossec-control stop  
+- The configuration can be viewed or modified at /var/ossec/etc/ossec.conf  
+
+Thanks for using the OSSEC HIDS. If you have any question, suggestion or if you find any bug, contact us at contact@ossec.net or using our public maillist at ossec-list@ossec.net ( http://www.ossec.net/main/support/ ).  More information can be found at http://www.ossec.net
+```
+
+Normalde bu aşamada kurulum tamamlanmış oluyor, ancak biz agentlardan gelen alarmları ve tüm bilgileri MySQL db’sinde tutmak istediğimiz için Ossec’i bu yönde yapılandırmamız gerekiyor.
+
+Bunun için önelikle MySQL’de ossec için bir db oluşturacağız ve bir user/pass belirleyeceğiz. Bu iş için mysql sunucusuna bağlanın:
+
+```
+# mysql -u root -p
+```
+
+ve db ve kullanıcı oluşturma işlemlerini “kırmızı renkli alanları kendinize göre düzenledikten sonra” gerçekleştirin:
+
+```
+mysql> create database ossec; 
+mysql> grant INSERT,SELECT,UPDATE,CREATE,DELETE,EXECUTE on ossec.* to ossecuser@<ossec-ip>; 
+mysql> set password for ossecuser@<ossec-ip>=PASSWORD('ossecpass'); 
+mysql> flush privileges; 
+mysql> quit
+```
+Şimdi oluşturduğumuz db’yi ossec kaynak kodlarının bulunduğu dizindeki “src/os_dbd” dizini içerisinde bulunan mysql.schema dosyasını kullanarak populate edeceğiz:
+
+```
+# cd ~/ossec-hids-2.8/src/os_dbd 
+# mysql -u root -p ossec < mysql.schema
+```
+
+Böylece ilgili db’de gerekli tablolar oluşturulmuş olacaktır.
+
+Şimdi, Ossec’in ana yapılandırma dosyasına db’ye nasıl bağlanacağını bildiren tanım satırlarını ekleyeceğiz. Conf dosyasını editleyelim:
+
+```
+# vi /var/ossec/etc/ossec.conf
+```
+
+ve en üstteki global bölümünün bittiği yerin hemen altına aşağıdaki ibareleri “db ve user bilgilerini kendimize göre düzenledikten sonra” ekleyelim.
+
+```
+<database_output> 
+  <hostname>server-ip</hostname> 
+  <username>ossecuser</username> 
+  <password>ossecpass</password> 
+  <database>ossec</database> 
+  <type>mysql</type> 
+</database_output>
+```
+Son olarak Ossec’in db desteğini etkinleştiriyoruz:
+```
+# /var/ossec/bin/ossec-control enable database
+```
+
+Bu şekilde kurulum tamamlanmış oluyor. Şimdi Ossec’i startup’e ekleyip servisi başlatacağız:
+
+```
+# chkconfig ossec on 
+# /var/ossec/bin/ossec-control restart
+```
+
+erşey yolunda gittiyse servis normal bir şekilde çalışıyor olmalıdır. Bu aşamada, Ossec Server kurulumu tamamlanmış oluyor ve Ossec kendi localhost’unu monitor etmeye başlıyor.
+
+Örnek olarak sisteme bir user eklerseniz, bununla ilgili bilgiler hem db’ye yazılacak hem de size bir email olarak bildirilecektir. (Yapılandırmada email ayarlarınızı düzgün yaptığınıza emin olun.)
+
+DB’de tüm loglar data tablosuna yazılmaktadır. Kontrol etmek için ilgili tabloyu sorgulayabilirsiniz:
+
+```
+# mysql -u root -p -e 'use ossec; select * from data
+```
+
+Herşey yolunda gittiyse çıktı olarak, Ossec’in başlatıldığını ifade eden bir log kaydı görmeniz gerekir.
+
+Birazdan sisteme agent ekleme işlerine geçeceğiz ama öncesinde ana ossec yapılandırma dosyası ile ilgili temel bilgilere değinmek yerinde olacaktır.
