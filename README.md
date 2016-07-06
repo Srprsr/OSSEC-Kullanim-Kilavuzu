@@ -146,77 +146,17 @@ These configuration options can be specified in each agent’s ossec.conf, excep
 | check_dev        | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
 | check_files      | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
 | check_if         | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
+| check_pids       | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
+| check_policy     | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
+| check_ports      | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
+| check_sys        | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
+| check_trojans    | Enable or disable the checking of trojans                                             | yes/no                                                 | yes                                              |
+| check_unixaudit  | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
+| check_winapps    | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
+| check_winaudit   | Enable or disable the checking of something                                           | 1/0                                                    | 1                                                |
+| check_winmalware | Enable or disable the checking of Windows malware.                                    | yes/no                                                 | yes                                              |
+| skip_nfs         | ESpecifies if rootcheck should scan network mounted filesystems.                      | yes/no                                                 | no                                               |
 
-
-##### check_pids
-Enable or disable the checking of something
-
-**İzin Verilen:** yes/no
-
-**Varsayılan:** yes
-
-##### check_policy
-Enable or disable the checking of something
-
-**İzin Verilen:** yes/no
-
-**Varsayılan:** yes
-
-##### check_ports
-Enable or disable the checking of something
-
-**İzin Verilen:** yes/no
-
-**Varsayılan:** yes
-
-##### check_sys
-Enable or disable the checking of something
-
-**İzin Verilen:** yes/no
-
-**Varsayılan:** yes
-
-##### check_trojans
-Enable or disable the checking of trojans
-
-**İzin Verilen:** yes/no
-
-**Varsayılan:** yes
-
-##### check_unixaudit
-Enable or disable the checking of something
-
-**İzin Verilen:** yes/no
-
-**Varsayılan:** yes
-
-##### check_winapps
-Enable or disable the checking of something
-
-**İzin Verilen:** yes/no
-
-**Varsayılan:** yes
-
-##### check_winaudit
-Enable or disable the checking of something
-
-**İzin Verilen:** 1/0
-
-**Varsayılan:** 1
-
-##### check_winmalware
-Enable or disable the checking of Windows malware.
-
-**İzin Verilen:** yes/no
-
-**Varsayılan:** yes
-
-##### skip_nfs
-Specifies if rootcheck should scan network mounted filesystems. Works on Linux and FreeBSD. Currently skip_nfs will abort checks running against CIFS or NFS mounts.
-
-**İzin Verilen:** yes/no
-
-**Varsayılan:** no
 
 ##Active Response
 OSSEC’in aktive response özelliği sistemde oluşan bir problem için otomatik aksiyonlar almak üzere kullanılmaktadır. Örneğin web sunucunuzu tarayan bir saldırgan’ı, web loglarından tespit edip saldırgan’ın *ip adresinin firewall üzerinden bloklanması OSSEC’in active response özelliği* ile mümkündür.
