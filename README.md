@@ -37,22 +37,23 @@ Meydana gelen değişikliklerin tespit edilmesi üzere kontrolü gereken bir di�
       * Lokal kurallar konularak False Positiveler kaldırılabilir.
 
 #### Log Monitoring Yapılandırma Seçenekleri
-These options should be specified locally in each agent’s ossec.conf file or the share agent.conf. Inside the <localfile> element, you can have the following options.
+
+Bu seçenekler her ajanın ossec.conf dosyasında belirtilmelidir. <localfile> öğensinin içinde, aşağıdaki seçenekleri bulabilirsiniz.
 
 ##### localfile
 ##### location
 
-Specify the location of the log to be read. strftime formats may be used for log file names. For instance, a log file named file.log-2011-01-22 could be referenced with file.log-%Y-%m-%d. Wildcards may be used on non-Windows systems. When wildcards are used, the log files must exist at the time ossec-logcollector is started. It will not automatically begin monitoring new log files. strftime and wildcards cannot be used on the same entry.
+Log dosyalarının konumunu belirtmek okunacak. strftime biçimleri log dosyası adları için kullanılabilir. Örneğin, file.log-2011-01-22 adında bir log dosyası file.log-% Y-% m-% d ile başvurulan olabilir. Wildcard olmayan Windows sistemlerinde kullanılabilir. Wildcard kullanıldığında, log dosyaları OSSEC-logcollector başlatıldığı anda mevcut olmalıdır. Bu durumda otomatik olarak yeni log dosyaları izlemeye başlamaz. strftime ve wildcard aynı girişte kullanılamaz.
 
-**Default** Multiple (eg /var/log/messages)
+**Varsayılan** Çoklu (eg /var/log/messages)
 
-**Allowed** Any log file
+**İzin Verilen** Tüm Log Dosylaraı
 
 ##### log_format
-The format of the log being read.
+Log dosyasının okunma formatı.
 ```
 Note
-If the log has one entry per line, use syslog.
+Eğer log dosyasında her bir satırda bir entry varsa syslog kullanın.
 ```
 **Default** syslog
 
