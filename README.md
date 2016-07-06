@@ -36,6 +36,11 @@ Meydana gelen değişikliklerin tespit edilmesi üzere kontrolü gereken bir di�
   * False Pozitif nasıl oluşur?
       * Lokal kurallar konularak False Positiveler kaldırılabilir.
 
+#### Log Monitoring Yapılandırma Seçenekleri
+These options should be specified locally in each agent’s ossec.conf file or the share agent.conf. Inside the <localfile> element, you can have the following options.
+
+###### localfile
+
 ##Rootkit Detection
 OSSEC’in bir diğer görevi de sistemlerde periyodik olarak rootkit taraması yapmaktır. Bu şekilde sunucuların herhangi birinde  bir rootkit, trojan ya da virus’ün varlığı anında tespit edilir ve bildirilir.
 
