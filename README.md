@@ -132,24 +132,16 @@ OSSEC’in bir diğer görevi de sistemlerde periyodik olarak rootkit taraması 
 #### Rootkit Detection Yapılandırma Seçenekleri
 These configuration options can be specified in each agent’s ossec.conf, except auto_ignore and alert_new_file which are manager side options. If the ignore option is specified on the manager the setting becomes global for all agents.
 
-| Setting Name     | Explanation                                                                           | İzin Verilen                                           | Varsayılan                                       |
+| Yapılandırma Adı | Açıklama                                                                              | İzin Verilen                                           | Varsayılan                                       |
 | ---------------- |:-------------------------------------------------------------------------------------:| ------------------------------------------------------:| ------------------------------------------------:|
 | rootkit_files    | This option can be used to change the location of the rootkit files database.         | A file with the rootkit files signatures               | /etc/shared/rootkit_files.txt                    |
+| rootkit_trojans  | This option can be used to change the location of the rootkit trojans database.       | A file with the trojans signatures                     | /etc/shared/rootkit_trojans.txt                  |
+| windows_malware  |                                                                                       |                                                        |                                                  |
+| windows_malware  |                                                                                       |                                                        |                                                  |
+| windows_malware  |                                                                                       |                                                        |                                                  |
+| windows_malware  |                                                                                       |                                                        |                                                  |
 
-
-##### rootkit_files
-
-
-**İzin Verilen:** 
-**Varsayılan:** 
-
-##### rootkit_trojans
-This option can be used to change the location of the rootkit trojans database.
-
-**İzin Verilen:** A file with the trojans signatures
-**Varsayılan:** /etc/shared/rootkit_trojans.txt
-
-##### windows_malware
+##### 
 ##### windows_audit
 ##### windows_apps
 ##### systems_audit
