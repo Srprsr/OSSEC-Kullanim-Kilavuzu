@@ -22,21 +22,21 @@ Sisteminize sızmaya çalışan her tür atağın ortak özelliğinin sistem üz
 Meydana gelen değişikliklerin tespit edilmesi üzere kontrolü gereken bir diğer nokta ise log dosyalarıdır. OSSEC bu amaca yönelik olarak sistem loglarını izleyip analiz eder ve herhangi bir problem tespit edilmesi halinde alarm üreterek sistem yöneticisini bilgilendirir. Örnek olarak sisteme bir paket kurulduğu zaman ya da web sunucusuna ait loglara bir sızma girişimini işaret eden satırlar düşmeye başladığı zaman alarm üretilir ve durumun farkında olmanız sağlanır.
 
   
-    ### Quick Facts[¶](#quick-facts "Permalink to this headline")
+### Quick Facts
 
-    *   How often are logs monitored?
-        *   In real time.
-    *   Where are the events analyzed?
-        *   In the manager.
-    *   How long are they stored?
-        *   For as long as your policy dictates (it is user configurable).
-    *   Where does this help me with compliance?
-        *   (PCI DSS, etc) It helps with the whole section 10 (log monitoring) of PCI.
-    *   How much CPU does it use?
-        *   On the agent, it uses very little CPU/memory since it just read the events and forwards them to the manager.
-        *   On the manager, it depends on the number of events per second (EPS).
-    *   How does it deal with false positives?
-        *   False positives can be eliminated using local rules.
+  * How often are logs monitored?
+      * In real time.
+  * Where are the events analyzed?
+      * In the manager.
+  * How long are they stored?
+      * For as long as your policy dictates (it is user configurable).
+  * Where does this help me with compliance?
+      * (PCI DSS, etc) It helps with the whole section 10 (log monitoring) of PCI.
+  * How much CPU does it use?
+      * On the agent, it uses very little CPU/memory since it just read the events and forwards them to the manager.
+      * On the manager, it depends on the number of events per second (EPS).
+  * How does it deal with false positives?
+      * False positives can be eliminated using local rules.
 
 ##Rootkit Detection
 OSSEC’in bir diğer görevi de sistemlerde periyodik olarak rootkit taraması yapmaktır. Bu şekilde sunucuların herhangi birinde  bir rootkit, trojan ya da virus’ün varlığı anında tespit edilir ve bildirilir.
