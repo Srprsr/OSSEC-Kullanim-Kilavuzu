@@ -93,7 +93,18 @@ ossec: output: 'usb-check':
 
 ```
 
-**Allowed** Any string.
+**İzin Verilen** String.
+
+##### frequency
+Komut çalışırken arasındaki saniye cinsinden minimum süre. Komut muhtemelen tam her frekans saniyede çalışmıyor, ancak çalışmalar arasındaki zaman bu ayardan daha kısa olmayacaktır. frequency command ve fullcommand'le kullanılır.
+
+**İzin Verilen**: Saniye.
+
+##### checkdiff
+Bir event çıktısı, bir iç veri tabanında depolanacaktır. Aynı olay alındığında her zaman, üretimi, bir önceki çıkış ile karşılaştırılır. Çıktı değişti ise bir uyarı oluşturulur.
+
+##### only-future-events
+Sadece eventchannel kayıt formatı ile kullanılır. OSSEC son durdurulan beri OSSEC-logcollector cevapsız tüm eventleri okuyacaktır eventchannel log biçimi başlar varsayılan olarak. Bu durumun ortaya çıkmaması için *only-future-events*'i *yes* olarak ayarlamanız gerekir. Bu şekilde OSSEC sadece logcollector başladıktan sonra meydana gelen olayları alacaksınız.
 
 ##Rootkit Detection
 OSSEC’in bir diğer görevi de sistemlerde periyodik olarak rootkit taraması yapmaktır. Bu şekilde sunucuların herhangi birinde  bir rootkit, trojan ya da virus’ün varlığı anında tespit edilir ve bildirilir.
