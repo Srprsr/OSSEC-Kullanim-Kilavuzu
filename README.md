@@ -111,3 +111,67 @@ Bu iş için iptables’ın INPUT zincirine aşağıdakine benzer bir tanımlama
 Bu örnekte 10.0.0.0/16 networkünden upd 1514 ve 514 için izin verilmektedir.
 
 #Manager / Agent Mode Kurulumu
+
+Bu aşamda öncelikle Ossec Server (Manager) kurulumu yapacağız.
+
+İlk işlem Ossec paketinin download edilmesidir. Şu anki son Ossec sürümü 2.8 olsa da download etmeden önce yeni bir sürüm çıkıp çıkmadığını http://ossec.github.io/downloads.html adresinden kontrol etmeyi ihmal etmeyin.
+
+Şimdi hem ossec paketini hem de indirdiğimiz paketi doğrulamak için kullanacağımız checksum dosyasını indirelim:
+
+```
+# wget http://www.ossec.net/files/ossec-hids-2.8.tar.gz 
+# wget http://www.ossec.net/files/ossec-hids-2.8-checksum.txt
+```
+ve hem md5 hem de sha1 hashlerini kontrol edelim:
+```
+# cat ossec-hids-2.8-checksum.txt 
+MD5(ossec-hids-2.8.tar.gz)= b0a9268e9dfc0ca4c31a3c8df4d17a9e 
+SHA1(ossec-hids-2.8.tar.gz)= fb82bf984ddb77399be20ab9d2181a8b7ebccac3  
+
+# md5sum ossec-hids-2.8.tar.gz 
+b0a9268e9dfc0ca4c31a3c8df4d17a9e ossec-hids-2.8.tar.gz  
+
+# sha1sum ossec-hids-2.8.tar.gz 
+fb82bf984ddb77399be20ab9d2181a8b7ebccac3 ossec-hids-2.8.tar.gz
+```
+
+Doğrulama işleminin ardından Ossec Server kurulumunu başlatacağız. Kurulum install.sh scripti üzerinden gerçekleştirildiği için süreç oldukça kolaydır.
+
+Download ettiğimiz paketi açıyoruz:
+```
+# tar xvfz ossec-hids-2.8.tar.gz
+```
+Normalde ossec dizini içerisindeki install.sh scriptini çalıştırıp yönergeleri takip etmek kurulum için yeterli ancak biz MySQL destekli kurulum yapacağımız için öncesinde Ossec’in db desteğini etkinleştiriyoruz:
+
+```
+# cd ossec-hids-2.7.1 
+# cd src; make setdb
+```
+Sonrasında src dizininden bir üst dizine çıkıyoruz ve normal bir şekilde install.sh üzerinden kurulumu başlatıyoruz:
+
+```
+# cd .. 
+# bash install.sh
+```
+
+Bu komutu verdiğiniz zaman ilk olarak kurulumu hangi dilde yapmak istediğimizi soran çıktı gelecektir: Türkçe de seçebilirsiniz ancak ben uygulamanın kendi diline sadık kalmayı tercih ederek “en” diyerek devam ediyorum:
+
+```
+** Para instalação em português, escolha [br]. 
+** 要使用中文进行安装, 请选择 [cn]. 
+** Fur eine deutsche Installation wohlen Sie [de]. 
+** Για εγκατάσταση στα Ελληνικά, επιλέξτε [el]. 
+** For installation in English, choose [en]. 
+** Para instalar en Español , eliga [es]. 
+** Pour une installation en français, choisissez [fr] 
+** A Magyar nyelvű telepítéshez válassza [hu]. 
+** Per l'installazione in Italiano, scegli [it]. 
+** 日本語でインストールします．選択して下さい．[jp]. 
+** Voor installatie in het Nederlands, kies [nl]. 
+** Aby instalować w języku Polskim, wybierz [pl]. 
+** Для инструкций по установке на русском ,введите [ru]. 
+** Za instalaciju na srpskom, izaberi [sr]. 
+** Türkçe kurulum için seçin [tr]. 
+(en/br/cn/de/el/es/fr/hu/it/jp/nl/pl/ru/sr/tr) [en]: en
+```
+Dili seçtikten sonra aşağıdaki karşılama ekranı gelecektir. Bu ekranda ENTER ile devam ediyoruz.
