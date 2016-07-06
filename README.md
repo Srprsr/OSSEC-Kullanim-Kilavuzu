@@ -53,6 +53,7 @@ Note
 If the log has one entry per line, use syslog.
 ```
 **Default** syslog
+
 **Allowed** 
 > * syslog
 > * snort-full
