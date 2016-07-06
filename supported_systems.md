@@ -18,26 +18,26 @@ The following operating systems are supported by the OSSEC agent:
 #Devices supported via Syslog
 These systems/devices are also supported via remote syslog:
 
-*Cisco PIX, ASA and FWSM (all versions)
-*Cisco IOS routers (all versions)
-*Juniper Netscreen (all versions)
-*SonicWall firewall (all versions)
-*Checkpoint firewall (all versions)
-*Cisco IOS IDS/IPS module (all versions)
-*Sourcefire (Snort) IDS/IPS (all versions)
-*Dragon NIDS (all versions)
-*Checkpoint Smart Defense (all versions)
-*McAfee VirusScan Enterprise (v8 and v8.5)
-*Bluecoat proxy (all versions)
-*Cisco VPN concentrators (all versions)
-*VMWare ESXi 4.x
+* Cisco PIX, ASA and FWSM (all versions)
+* Cisco IOS routers (all versions)
+* Juniper Netscreen (all versions)
+* SonicWall firewall (all versions)
+* Checkpoint firewall (all versions)
+* Cisco IOS IDS/IPS module (all versions)
+* Sourcefire (Snort) IDS/IPS (all versions)
+* Dragon NIDS (all versions)
+* Checkpoint Smart Defense (all versions)
+* McAfee VirusScan Enterprise (v8 and v8.5)
+* Bluecoat proxy (all versions)
+* Cisco VPN concentrators (all versions)
+* VMWare ESXi 4.x
 
 #Devices and Operating Systems via Agentless
 Using OSSEC agentless options, the following systems are also supported (for log analysis and file integrity checking):
 
-*Cisco PIX, ASA and FWSM (all versions)
-*Cisco IOS routers (all versions)
-*Juniper Netscreen (all versions)
-*SonicWall firewall (all versions)
-*Checkpoint firewall (all versions)
-*All operating systems specified in the “operating systems” section
+* Cisco PIX, ASA and FWSM (all versions)
+* Cisco IOS routers (all versions)
+* Juniper Netscreen (all versions)
+* SonicWall firewall (all versions)
+* Checkpoint firewall (all versions)
+* All operating systems specified in the “operating systems” section
