@@ -132,29 +132,16 @@ OSSEC’in bir diğer görevi de sistemlerde periyodik olarak rootkit taraması 
 #### Rootkit Detection Yapılandırma Seçenekleri
 These configuration options can be specified in each agent’s ossec.conf, except auto_ignore and alert_new_file which are manager side options. If the ignore option is specified on the manager the setting becomes global for all agents.
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| Setting Name     | Explanation                                                                           | İzin Verilen                                           | Varsayılan                                       |
+| ---------------- |:-------------------------------------------------------------------------------------:| ------------------------------------------------------:| ------------------------------------------------:|
+| rootkit_files    | This option can be used to change the location of the rootkit files database.         | A file with the rootkit files signatures               | /etc/shared/rootkit_files.txt                    |
 
-##### base_directory
-The base directory that will be appended to the following options:
-> * rootkit_files
-> * rootkit_trojans
-> * windows_malware
-> * windows_audit
-> * windows_apps
-> * systems_audit
-
-**İzin Verilen:** Path to a directory 
-**Varsayılan:** /var/ossec
 
 ##### rootkit_files
-This option can be used to change the location of the rootkit files database.
 
-**İzin Verilen:** A file with the rootkit files signatures
-**Varsayılan:** /etc/shared/rootkit_files.txt
+
+**İzin Verilen:** 
+**Varsayılan:** 
 
 ##### rootkit_trojans
 This option can be used to change the location of the rootkit trojans database.
