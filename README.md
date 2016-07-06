@@ -6,7 +6,7 @@ OSSEC, Trend Micro tarafından desteklenen, tamamen açık kaynak kodlu, standal
  OSSEC, native olarak  tüm *nix ( Linux, MacOS, Solaris, HP-UX, AIX, Vmware ESX) ve Windows platformlarda çalışabilmekte, agentless modu sayesinde de router, switch gibi network cihazlarını da monitor edebilmektedir.
 
 # TEMEL ÖZELLİKLERİ
-* [link](#head1234)Dosya Bütünlük Kontrolü
+* [Dosya Bütünlük Kontrolü](#dosya-butunluk-kontrolu)
 * Log Monitoring
 * Rootkit Detection
 * Active Response
