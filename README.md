@@ -15,8 +15,6 @@ $ (ossec_version="2.8.2" ; ossec_checksum="a0f403270f388fbc6a0a4fd46791b1371f559
 
 ```
 
-Then follow the prompts.  You should still read the documentation [here](http://ossec.github.io/docs/).
-
 # TEMEL ÖZELLİKLERİ
 * [Dosya Bütünlük Kontrolü](#dosya-butunluk-kontrolu)
 * [Log Monitoring](#log-monitoring)
