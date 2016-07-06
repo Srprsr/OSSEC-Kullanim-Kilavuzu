@@ -132,6 +132,12 @@ OSSEC’in bir diğer görevi de sistemlerde periyodik olarak rootkit taraması 
 #### Rootkit Detection Yapılandırma Seçenekleri
 These configuration options can be specified in each agent’s ossec.conf, except auto_ignore and alert_new_file which are manager side options. If the ignore option is specified on the manager the setting becomes global for all agents.
 
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
 ##### base_directory
 The base directory that will be appended to the following options:
 > * rootkit_files
