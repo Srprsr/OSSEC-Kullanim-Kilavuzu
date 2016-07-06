@@ -60,6 +60,19 @@ Eğer log dosyasında her bir satırda bir entry varsa syslog kullanın.
 **Allowed** 
 > * syslog
 > * snort-full
+> * snort-fast
+> * squid
+> * iis
+> * eventlog
+> * eventchannel
+> * mysql_log
+> * postgresql_log
+> * nmapg
+> * apache
+> * command
+> * full_command
+> * djb-multilog
+> * multi-line
 
 ##Rootkit Detection
 OSSEC’in bir diğer görevi de sistemlerde periyodik olarak rootkit taraması yapmaktır. Bu şekilde sunucuların herhangi birinde  bir rootkit, trojan ya da virus’ün varlığı anında tespit edilir ve bildirilir.
