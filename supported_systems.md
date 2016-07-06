@@ -1,8 +1,8 @@
-#Supported Systems
-OSSEC supports the following operating systems and log formats.
+#Desteklenen Sistemler
+OSSEC aşağıdaki tüm sistemlerde ve log formatlarında desteklenmektedir.
 
-#Operating Systems
-The following operating systems are supported by the OSSEC agent:
+#İşletim Sistemleri
+Aşağıdaki tüm işletim sistemleri OSSEC Agent tarafından desteklenmektedir.
 
 * GNU/Linux (all distributions, including RHEL, Ubuntu, Slackware, Debian, etc)
 * Windows XP, 2003, Vista, 2008, 2012
@@ -15,8 +15,8 @@ The following operating systems are supported by the OSSEC agent:
 * Mac OS X 10.x
 * HP-UX 11
 
-#Devices supported via Syslog
-These systems/devices are also supported via remote syslog:
+#Syslog Aracılığı ile Desteklenen Cihazları
+Aşağıdaki sistemler veya cihazlar Remote Syslog aracılığı ile desteklenmektedir:
 
 * Cisco PIX, ASA and FWSM (all versions)
 * Cisco IOS routers (all versions)
@@ -32,8 +32,8 @@ These systems/devices are also supported via remote syslog:
 * Cisco VPN concentrators (all versions)
 * VMWare ESXi 4.x
 
-#Devices and Operating Systems via Agentless
-Using OSSEC agentless options, the following systems are also supported (for log analysis and file integrity checking):
+#Agentless Aracılığı ile Cihazlar ve İşletim Sistemleri
+OSSEC agentless seçeneğini kullanarak, aşağıdaki sistemlerde desteklenir.
 
 * Cisco PIX, ASA and FWSM (all versions)
 * Cisco IOS routers (all versions)
