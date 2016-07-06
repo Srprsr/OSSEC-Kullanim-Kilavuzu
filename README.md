@@ -335,5 +335,3 @@ DB’de tüm loglar data tablosuna yazılmaktadır. Kontrol etmek için ilgili t
 ```
 
 Herşey yolunda gittiyse çıktı olarak, Ossec’in başlatıldığını ifade eden bir log kaydı görmeniz gerekir.
-
-Birazdan sisteme agent ekleme işlerine geçeceğiz ama öncesinde ana ossec yapılandırma dosyası ile ilgili temel bilgilere değinmek yerinde olacaktır.
