@@ -163,82 +163,114 @@ This option can be used to change the location of the rootkit trojans database.
 ##### scan_all
 
 Tells rootcheck to scan the whole system (may lead to some false positives).
+
 **İzin Verilen:** yes/no
+
 **Varsayılan:** no
 
 ##### frequency
 Frequency that the rootcheck is going to be executed (in seconds).
+
 **İzin Verilen:** Time (in seconds)
+
 **Varsayılan:** 36000 (10 hours)
 
 ##### disabled
 Disables the execution of rootcheck.
+
 **İzin Verilen:** yes/no
+
 **Varsayılan:** no
 
 ##### check_dev
 Enable or disable the checking of something
+
 **İzin Verilen:** yes/no
+
 **Varsayılan:** yes
 
 ##### check_files
 Enable or disable the checking of something
+
 **İzin Verilen:** yes/no
+
 **Varsayılan:** yes
 
 ##### check_if
 Enable or disable the checking of something
+
 **İzin Verilen:** yes/no
+
 **Varsayılan:** yes
 
 ##### check_pids
 Enable or disable the checking of something
+
 **İzin Verilen:** yes/no
+
 **Varsayılan:** yes
 
 ##### check_policy
 Enable or disable the checking of something
+
 **İzin Verilen:** yes/no
+
 **Varsayılan:** yes
 
 ##### check_ports
 Enable or disable the checking of something
+
 **İzin Verilen:** yes/no
+
 **Varsayılan:** yes
 
 ##### check_sys
 Enable or disable the checking of something
+
 **İzin Verilen:** yes/no
+
 **Varsayılan:** yes
 
 ##### check_trojans
 Enable or disable the checking of trojans
+
 **İzin Verilen:** yes/no
+
 **Varsayılan:** yes
 
 ##### check_unixaudit
 Enable or disable the checking of something
+
 **İzin Verilen:** yes/no
+
 **Varsayılan:** yes
 
 ##### check_winapps
 Enable or disable the checking of something
+
 **İzin Verilen:** yes/no
+
 **Varsayılan:** yes
 
 ##### check_winaudit
 Enable or disable the checking of something
+
 **İzin Verilen:** 1/0
+
 **Varsayılan:** 1
 
 ##### check_winmalware
 Enable or disable the checking of Windows malware.
+
 **İzin Verilen:** yes/no
+
 **Varsayılan:** yes
 
 ##### skip_nfs
 Specifies if rootcheck should scan network mounted filesystems. Works on Linux and FreeBSD. Currently skip_nfs will abort checks running against CIFS or NFS mounts.
+
 **İzin Verilen:** yes/no
+
 **Varsayılan:** no
 
 ##Active Response
