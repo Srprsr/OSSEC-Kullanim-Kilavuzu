@@ -79,6 +79,22 @@ Komut çalıştırmak için kullanılır. Bu komutun bütün çıkış komutu ve
 
 **İzin Verilen** Tüm commandline ve argümanlar.
 
+##### alias
+Komutu tanımlamak için kullanılır. Bu log dosyası komutu yerini alır.
+
+Örneğin: <alias>usb-check</alias> değişecek
+```
+ossec: output: 'reg QUERY HKLM\SYSTEM\CurrentControlSet\Enum\USBSTOR':
+
+```
+ve
+```
+ossec: output: 'usb-check':
+
+```
+
+**Allowed** Any string.
+
 ##Rootkit Detection
 OSSEC’in bir diğer görevi de sistemlerde periyodik olarak rootkit taraması yapmaktır. Bu şekilde sunucuların herhangi birinde  bir rootkit, trojan ya da virus’ün varlığı anında tespit edilir ve bildirilir.
 
