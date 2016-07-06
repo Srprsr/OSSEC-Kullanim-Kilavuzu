@@ -137,56 +137,16 @@ These configuration options can be specified in each agent’s ossec.conf, excep
 | rootkit_files    | This option can be used to change the location of the rootkit files database.         | A file with the rootkit files signatures               | /etc/shared/rootkit_files.txt                    |
 | rootkit_trojans  | This option can be used to change the location of the rootkit trojans database.       | A file with the trojans signatures                     | /etc/shared/rootkit_trojans.txt                  |
 | windows_malware  |                                                                                       |                                                        |                                                  |
-| windows_malware  |                                                                                       |                                                        |                                                  |
-| windows_malware  |                                                                                       |                                                        |                                                  |
-| windows_malware  |                                                                                       |                                                        |                                                  |
+| windows_audit    |                                                                                       |                                                        |                                                  |
+| windows_apps     |                                                                                       |                                                        |                                                  |
+| systems_audit    |                                                                                       |                                                        |                                                  |
+| scan_all         | Tells rootcheck to scan the whole system (may lead to some false positives).          | yes/no                                                 | no                                               |
+| frequency        | Frequency that the rootcheck is going to be executed (in seconds).                    | Saniye cinsinden zaman                                 | 36000 sn                                         |
+| disabled         | Disables the execution of rootcheck.                                                  | yes/no                                                 | no                                               |
+| check_dev        | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
+| check_files      | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
+| check_if         | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
 
-##### 
-##### windows_audit
-##### windows_apps
-##### systems_audit
-##### scan_all
-
-Tells rootcheck to scan the whole system (may lead to some false positives).
-
-**İzin Verilen:** yes/no
-
-**Varsayılan:** no
-
-##### frequency
-Frequency that the rootcheck is going to be executed (in seconds).
-
-**İzin Verilen:** Time (in seconds)
-
-**Varsayılan:** 36000 (10 hours)
-
-##### disabled
-Disables the execution of rootcheck.
-
-**İzin Verilen:** yes/no
-
-**Varsayılan:** no
-
-##### check_dev
-Enable or disable the checking of something
-
-**İzin Verilen:** yes/no
-
-**Varsayılan:** yes
-
-##### check_files
-Enable or disable the checking of something
-
-**İzin Verilen:** yes/no
-
-**Varsayılan:** yes
-
-##### check_if
-Enable or disable the checking of something
-
-**İzin Verilen:** yes/no
-
-**Varsayılan:** yes
 
 ##### check_pids
 Enable or disable the checking of something
