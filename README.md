@@ -155,7 +155,7 @@ These configuration options can be specified in each agent’s ossec.conf, excep
 | check_winapps    | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
 | check_winaudit   | Enable or disable the checking of something                                           | 1/0                                                    | 1                                                |
 | check_winmalware | Enable or disable the checking of Windows malware.                                    | yes/no                                                 | yes                                              |
-| skip_nfs         | ESpecifies if rootcheck should scan network mounted filesystems.                      | yes/no                                                 | no                                               |
+| skip_nfs         | Specifies if rootcheck should scan network mounted filesystems.                       | yes/no                                                 | no                                               |
 
 
 ##Active Response
