@@ -21,11 +21,11 @@ Sisteminize sızmaya çalışan her tür atağın ortak özelliğinin sistem üz
 ##Log Monitoring
 Meydana gelen değişikliklerin tespit edilmesi üzere kontrolü gereken bir diğer nokta ise log dosyalarıdır. OSSEC bu amaca yönelik olarak sistem loglarını izleyip analiz eder ve herhangi bir problem tespit edilmesi halinde alarm üreterek sistem yöneticisini bilgilendirir. Örnek olarak sisteme bir paket kurulduğu zaman ya da web sunucusuna ait loglara bir sızma girişimini işaret eden satırlar düşmeye başladığı zaman alarm üretilir ve durumun farkında olmanız sağlanır.
 
-  
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp#### Quick Facts
-
-  * How often are logs monitored?
-      * In real time.
+>>
+>> #### Quick Facts
+>>
+>>  * How often are logs monitored?
+>>      * In real time.
   * Where are the events analyzed?
       * In the manager.
   * How long are they stored?
