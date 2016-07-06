@@ -6,5 +6,12 @@ OSSEC, Trend Micro tarafından desteklenen, tamamen açık kaynak kodlu, standal
  OSSEC, native olarak  tüm *nix ( Linux, MacOS, Solaris, HP-UX, AIX, Vmware ESX) ve Windows platformlarda çalışabilmekte, agentless modu sayesinde de router, switch gibi network cihazlarını da monitor edebilmektedir.
 
 # TEMEL ÖZELLİKLERİ
-* Unordered sub-list.
-* * Unordered sub-list.
+* Dosya Bütünlük Kontrolü
+* Log Monitoring
+* Rootkit Detection
+* Active Response
+
+##Dosya Bütünlük Kontrolü
+File Integrity Checking ya da File Integrity Monitoring (FIM) olarak adlandırılan bu işlem, temel olarak sistemde şu ya da bu şekilde değişikliğe uğrayan dosyaların tespit edilmesi ve bu değişikliklerin sistem yöneticisine bildirilmesini hedeflemektedir.
+
+Sisteminize sızmaya çalışan her tür atağın ortak özelliğinin sistem üzerinde bir takım dosyaları değiştirmek ya da sisteme bir takım dosyalar eklemek olduğu düşünülürse, HIDS’ler için dosya bütünlük kontrolü en önemli bileşenlerden birisidir ve sistemlerinizdeki değişiklikleri oldukları an tespit etmek büyük öneme sahiptir.
