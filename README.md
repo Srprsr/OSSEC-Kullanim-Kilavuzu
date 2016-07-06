@@ -24,19 +24,17 @@ Meydana gelen değişikliklerin tespit edilmesi üzere kontrolü gereken bir di�
 
 #### Log Monitoring Soru&Cevap
 
-  * How often are logs monitored?
-      * In real time.
-  * Where are the events analyzed?
-      * In the manager.
-  * How long are they stored?
-      * For as long as your policy dictates (it is user configurable).
-  * Where does this help me with compliance?
-      * (PCI DSS, etc) It helps with the whole section 10 (log monitoring) of PCI.
-  * How much CPU does it use?
-      * On the agent, it uses very little CPU/memory since it just read the events and forwards them to the manager.
-      * On the manager, it depends on the number of events per second (EPS).
-  * How does it deal with false positives?
-      * False positives can be eliminated using local rules.
+  * Ne kadar sıklıkla loglar izlenebilir.
+      * Gerçek Zamanlı olarak dosyaları inceleyebilirsiniz.
+  * Olaylar nerede analiz edilir?
+      * manager bölümünde.
+  * Ne kadar süre saklanır?
+      * Politikalar izin verdiği sürece (kullanıcı tarafından yönetilebilir).
+  * CPU kullanımı nasıl?
+      * Agent, çok az CPU/memory kullanır, sadece olayları okur ve onu manager'a gönderir.
+      * Manager, saniyede gerçekleşen olay(EPS:event per second) sayısına göre CPU kullanımı değişir.
+  * False Pozitif nasıl oluşur?
+      * Lokal kurallar konularak False Positiveler kaldırılabilir.
 
 ##Rootkit Detection
 OSSEC’in bir diğer görevi de sistemlerde periyodik olarak rootkit taraması yapmaktır. Bu şekilde sunucuların herhangi birinde  bir rootkit, trojan ya da virus’ün varlığı anında tespit edilir ve bildirilir.
