@@ -40,6 +40,10 @@ Meydana gelen değişikliklerin tespit edilmesi üzere kontrolü gereken bir di�
 These options should be specified locally in each agent’s ossec.conf file or the share agent.conf. Inside the <localfile> element, you can have the following options.
 
 ###### localfile
+###### location
+Specify the location of the log to be read. strftime formats may be used for log file names. For instance, a log file named file.log-2011-01-22 could be referenced with file.log-%Y-%m-%d. Wildcards may be used on non-Windows systems. When wildcards are used, the log files must exist at the time ossec-logcollector is started. It will not automatically begin monitoring new log files. strftime and wildcards cannot be used on the same entry.
+**Default** Multiple (eg /var/log/messages)
+**Allowed** Any log file
 
 ##Rootkit Detection
 OSSEC’in bir diğer görevi de sistemlerde periyodik olarak rootkit taraması yapmaktır. Bu şekilde sunucuların herhangi birinde  bir rootkit, trojan ya da virus’ün varlığı anında tespit edilir ve bildirilir.
