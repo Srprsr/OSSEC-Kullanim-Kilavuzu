@@ -76,3 +76,38 @@ Debian tabanlı sistemlerde build-essential paketinin yüklü olması gerekmekte
 # apt-get install build-essential
 ```
 ve ayrıca Ossec’i database desteği ile kullanacaksanız mysql-dev ya da postgresql-dev paketlerinden birisi yüklü olmalıdır.
+Ben kurulumu mysql destekli olarak yapacağım için mysql-dev paketini kuruyorum:
+```
+# apt-get install mysql-server mysql-dev
+```
+
+##RHEL/CentOS
+RHEL ve CentOS sistemlerde, sistemi minimal kurmadıysanız mysql paketleri hariç diğer gerekli olan herşey kurulu gelecektir. Ancak miminal bir sisteminiz varsa “Development tools” grubunu yükleyebilirsiniz:
+```
+# yum groupinstall "Development tools"
+```
+Ayrıca, Ossec’i mysql destekli kuracağımız için mysql ile ilgili paketleri de kuruyoruz:
+```
+# yum install mysql-server mysql-devel 
+# chkconfig mysqld on 
+# service mysqld start
+```
+Şimdi de mysql_secure_installation aracını kullanarak MySQL’i güvenli bir hale getirelim:
+```
+# mysql_secure_installation
+```
+
+Yönergeleri takip ettikten sonra root kullanıcısı için bir şifre tanımlamış ve diğer güvenlik önlemlerini almış oluyoruz.
+
+##IPTables
+
+Ossec Server agentları ile udp 1514. porttan konuştuğu ve opsiyonel olarak syslog üzerinden log almak istemeniz durumunda udp 514. portu kullandığı için sisteminizde iptables devrede ise bu iki porta kendi networkünüzden izin vermeniz gerekir.
+
+Bu iş için iptables’ın INPUT zincirine aşağıdakine benzer bir tanımlama ekleyebilirsiniz:
+```
+-A INPUT -p udp --dport 514 -s 10.0.0.0/16 -j ACCEPT 
+-A INPUT -p udp --dport 1514 -s 10.0.0.0/16 -j ACCEPT
+```
+Bu örnekte 10.0.0.0/16 networkünden upd 1514 ve 514 için izin verilmektedir.
+
+#Manager / Agent Mode Kurulumu
