@@ -45,9 +45,9 @@ Bu seçenekler her ajanın ossec.conf dosyasında belirtilmelidir. <localfile> �
 
 Log dosyalarının konumunu belirtmek okunacak. strftime biçimleri log dosyası adları için kullanılabilir. Örneğin, file.log-2011-01-22 adında bir log dosyası file.log-% Y-% m-% d ile başvurulan olabilir. Wildcard olmayan Windows sistemlerinde kullanılabilir. Wildcard kullanıldığında, log dosyaları OSSEC-logcollector başlatıldığı anda mevcut olmalıdır. Bu durumda otomatik olarak yeni log dosyaları izlemeye başlamaz. strftime ve wildcard aynı girişte kullanılamaz.
 
-**Varsayılan** Çoklu (eg /var/log/messages)
+**Varsayılan:** Çoklu (eg /var/log/messages)
 
-**İzin Verilen** Tüm Log Dosylaraı
+**İzin Verilen:** Tüm Log Dosylaraı
 
 ##### log_format
 Log dosyasının okunma formatı.
@@ -55,7 +55,7 @@ Log dosyasının okunma formatı.
 Note
 Eğer log dosyasında her bir satırda bir entry varsa syslog kullanın.
 ```
-**Default** syslog
+**Default:** syslog
 
 **Allowed** 
 > * syslog
@@ -77,7 +77,7 @@ Eğer log dosyasında her bir satırda bir entry varsa syslog kullanın.
 ##### command
 Komut çalıştırmak için kullanılır. Bu komutun bütün çıkış komutu veya tam komut kullanılıp kullanılmadığını bağlı olarak bir veya daha fazla log mesajı olarak okunacaktır.
 
-**İzin Verilen** Tüm commandline ve argümanlar.
+**İzin Verilen:** Tüm commandline ve argümanlar.
 
 ##### alias
 Komutu tanımlamak için kullanılır. Bu log dosyası komutu yerini alır.
@@ -93,12 +93,12 @@ ossec: output: 'usb-check':
 
 ```
 
-**İzin Verilen** String.
+**İzin Verilen:** String.
 
 ##### frequency
 Komut çalışırken arasındaki saniye cinsinden minimum süre. Komut muhtemelen tam her frekans saniyede çalışmıyor, ancak çalışmalar arasındaki zaman bu ayardan daha kısa olmayacaktır. frequency command ve fullcommand'le kullanılır.
 
-**İzin Verilen**: Saniye.
+**İzin Verilen:** Saniye.
 
 ##### checkdiff
 Bir event çıktısı, bir iç veri tabanında depolanacaktır. Aynı olay alındığında her zaman, üretimi, bir önceki çıkış ile karşılaştırılır. Çıktı değişti ise bir uyarı oluşturulur.
@@ -128,6 +128,118 @@ Sadece eventchannel kayıt formatı ile kullanılır. OSSEC işleyecek olayları
 
 ##Rootkit Detection
 OSSEC’in bir diğer görevi de sistemlerde periyodik olarak rootkit taraması yapmaktır. Bu şekilde sunucuların herhangi birinde  bir rootkit, trojan ya da virus’ün varlığı anında tespit edilir ve bildirilir.
+
+#### Rootkit Detection Yapılandırma Seçenekleri
+These configuration options can be specified in each agent’s ossec.conf, except auto_ignore and alert_new_file which are manager side options. If the ignore option is specified on the manager the setting becomes global for all agents.
+
+##### base_directory
+The base directory that will be appended to the following options:
+> * rootkit_files
+> * rootkit_trojans
+> * windows_malware
+> * windows_audit
+> * windows_apps
+> * systems_audit
+
+**İzin Verilen:** Path to a directory 
+**Varsayılan:** /var/ossec
+
+##### rootkit_files
+This option can be used to change the location of the rootkit files database.
+
+**İzin Verilen:** A file with the rootkit files signatures
+**Varsayılan:** /etc/shared/rootkit_files.txt
+
+##### rootkit_trojans
+This option can be used to change the location of the rootkit trojans database.
+
+**İzin Verilen:** A file with the trojans signatures
+**Varsayılan:** /etc/shared/rootkit_trojans.txt
+
+##### windows_malware
+##### windows_audit
+##### windows_apps
+##### systems_audit
+##### scan_all
+
+Tells rootcheck to scan the whole system (may lead to some false positives).
+**İzin Verilen:** yes/no
+**Varsayılan:** no
+
+##### frequency
+Frequency that the rootcheck is going to be executed (in seconds).
+**İzin Verilen:** Time (in seconds)
+**Varsayılan:** 36000 (10 hours)
+
+##### disabled
+Disables the execution of rootcheck.
+**İzin Verilen:** yes/no
+**Varsayılan:** no
+
+##### check_dev
+Enable or disable the checking of something
+**İzin Verilen:** yes/no
+**Varsayılan:** yes
+
+##### check_files
+Enable or disable the checking of something
+**İzin Verilen:** yes/no
+**Varsayılan:** yes
+
+##### check_if
+Enable or disable the checking of something
+**İzin Verilen:** yes/no
+**Varsayılan:** yes
+
+##### check_pids
+Enable or disable the checking of something
+**İzin Verilen:** yes/no
+**Varsayılan:** yes
+
+##### check_policy
+Enable or disable the checking of something
+**İzin Verilen:** yes/no
+**Varsayılan:** yes
+
+##### check_ports
+Enable or disable the checking of something
+**İzin Verilen:** yes/no
+**Varsayılan:** yes
+
+##### check_sys
+Enable or disable the checking of something
+**İzin Verilen:** yes/no
+**Varsayılan:** yes
+
+##### check_trojans
+Enable or disable the checking of trojans
+**İzin Verilen:** yes/no
+**Varsayılan:** yes
+
+##### check_unixaudit
+Enable or disable the checking of something
+**İzin Verilen:** yes/no
+**Varsayılan:** yes
+
+##### check_winapps
+Enable or disable the checking of something
+**İzin Verilen:** yes/no
+**Varsayılan:** yes
+
+##### check_winaudit
+Enable or disable the checking of something
+**İzin Verilen:** 1/0
+**Varsayılan:** 1
+
+##### check_winmalware
+Enable or disable the checking of Windows malware.
+**İzin Verilen:** yes/no
+**Varsayılan:** yes
+
+##### skip_nfs
+Specifies if rootcheck should scan network mounted filesystems. Works on Linux and FreeBSD. Currently skip_nfs will abort checks running against CIFS or NFS mounts.
+**İzin Verilen:** yes/no
+**Varsayılan:** no
 
 ##Active Response
 OSSEC’in aktive response özelliği sistemde oluşan bir problem için otomatik aksiyonlar almak üzere kullanılmaktadır. Örneğin web sunucunuzu tarayan bir saldırgan’ı, web loglarından tespit edip saldırgan’ın *ip adresinin firewall üzerinden bloklanması OSSEC’in active response özelliği* ile mümkündür.
