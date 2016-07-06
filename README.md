@@ -8,8 +8,8 @@ OSSEC, Trend Micro tarafından desteklenen, tamamen açık kaynak kodlu, standal
 # TEMEL ÖZELLİKLERİ
 * [Dosya Bütünlük Kontrolü](#dosya-butunluk-kontrolu)
 * [Log Monitoring](#log-monitoring)
-* Rootkit Detection
-* Active Response
+* [Rootkit Detection](#rookit-detection)
+* [Active Response](#active-response)
 
 ##Dosya Bütünlük Kontrolü
 File Integrity Checking ya da File Integrity Monitoring (FIM) olarak adlandırılan bu işlem, temel olarak sistemde şu ya da bu şekilde değişikliğe uğrayan dosyaların tespit edilmesi ve bu değişikliklerin sistem yöneticisine bildirilmesini hedeflemektedir.
@@ -18,3 +18,9 @@ Sisteminize sızmaya çalışan her tür atağın ortak özelliğinin sistem üz
 
 ##Log Monitoring
 Meydana gelen değişikliklerin tespit edilmesi üzere kontrolü gereken bir diğer nokta ise log dosyalarıdır. OSSEC bu amaca yönelik olarak sistem loglarını izleyip analiz eder ve herhangi bir problem tespit edilmesi halinde alarm üreterek sistem yöneticisini bilgilendirir. Örnek olarak sisteme bir paket kurulduğu zaman ya da web sunucusuna ait loglara bir sızma girişimini işaret eden satırlar düşmeye başladığı zaman alarm üretilir ve durumun farkında olmanız sağlanır.
+
+##Rootkit Detection
+OSSEC’in bir diğer görevi de sistemlerde periyodik olarak rootkit taraması yapmaktır. Bu şekilde sunucuların herhangi birinde  bir rootkit, trojan ya da virus’ün varlığı anında tespit edilir ve bildirilir.
+
+##Active Response
+OSSEC’in aktive response özelliği sistemde oluşan bir problem için otomatik aksiyonlar almak üzere kullanılmaktadır. Örneğin web sunucunuzu tarayan bir saldırgan’ı, web loglarından tespit edip saldırgan’ın ip adresinin firewall üzerinden bloklanması OSSEC’in active response özelliği ile mümkündür.
