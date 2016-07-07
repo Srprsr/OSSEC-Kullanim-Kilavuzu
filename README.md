@@ -161,6 +161,24 @@ Bu yapılandırma seçenekleri yöneticisi yan seçenekleri auto_ignore ve alert
 ##Active Response
 OSSEC’in aktive response özelliği sistemde oluşan bir problem için otomatik aksiyonlar almak üzere kullanılmaktadır. Örneğin web sunucunuzu tarayan bir saldırgan’ı, web loglarından tespit edip saldırgan’ın *ip adresinin firewall üzerinden bloklanması OSSEC’in active response özelliği* ile mümkündür.
 
+#### Creating Customized Active Responses
+##### Creating the command
+Yapmamız gereken ilk şey OSSEC config yeni bir "command" girdisini yaratmaktır.
+```
+<command>
+    <name>mail-test</name>
+    <executable>mail-test.sh</executable>
+    <timeout_allowed>no</timeout_allowed>
+    <expect />
+</command>
+```
+
+Şu an komut dosyası zaman aşımı gerek olmadığından, boş bırakıyoruz. Eğer zaman aşımı kullanmak istiyorsanız expect taginin içine değeri girebilirsiniz.
+```
+Note
+Örn: <expect>srcip</expect>
+```
+
 #OSSEC BİLEŞENLERİ
 * [Manager](#manager)
 * [Agent](#agent)
