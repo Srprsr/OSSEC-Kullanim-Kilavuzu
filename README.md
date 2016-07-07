@@ -179,6 +179,29 @@ Note
 Örn: <expect>srcip</expect>
 ```
 
+##### Configure the Active response
+Sonra, aktif tepki çalıştırmak için OSSEC yapılandırmanız gerekir. Benim durumumda, ben OSSEC sunucu üzerinde çalıştırmak istediğiniz (yani konum sunucusunu seçin) ve kural 1002 ateş her zaman (1002 rules_id bakınız). Ayrıca seviyesini veya farklı yerlerde belirtebilirsiniz.
+```
+<active-response>
+    <command>mail-test</command>
+    <location>server</location>
+    <rules_id>1002</rules_id>
+</active-response>
+```
+
+##### Create active response script
+Biz aktif response komut dosyası oluşturabilirsiniz. mail-test.sh set yürütme izinlerine sahip 'var/OSSEC/active-response/bin' içinde olmalıdır.
+
+**Script'e hangi argümanlar geçirilebilir?**
+> * action (delete or add)
+> * user name (or - if not set)
+> * src ip (or - if not set)
+> * Alert id (uniq for every alert)
+> * Rule id
+> * Agent name/host
+> * Filename
+
+
 #OSSEC BİLEŞENLERİ
 * [Manager](#manager)
 * [Agent](#agent)
