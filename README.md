@@ -636,4 +636,141 @@ DB’de tüm loglar data tablosuna yazılmaktadır. Kontrol etmek için ilgili t
 # mysql -u root -p -e 'use ossec; select * from data
 ```
 
+
 Herşey yolunda gittiyse çıktı olarak, Ossec’in başlatıldığını ifade eden bir log kaydı görmeniz gerekir.
+
+#### Agent Tarafındaki Yapılandırma İşlemleri
+Bahsettiğimiz gibi Ossec agent’larda tüm yapılandırma /var/ossec/etc/ossec.conf dosyasında bulunmaktadır. Yapılandırmayı Ossec Server’dan merkezi olarak düzenlemek istemeniz durumunda ilgili dosya içerisinde sadece Ossec Server’ın IP’sinin belirtildiği bölümün -ve varsa command ile full_command bölümlerinin- kalması yeterlidir.
+
+Örnek bir ossec.conf şu şekilde olmalıdır:
+
+```
+<ossec_config>
+  <client>
+    <server-ip>10.10.12.200</server-ip>
+  </client>
+</ossec_config>
+```
+Ana yapılandırma içerisinde command ve full-command komutları da varsa (ki defaulf kurulumda gelir), aynı şekilde ilgil bölümleri <ossec_config></ossec_config> tagleri içerisine yazmanız gerekmektedir. Bu gibi bir yapılandırma için conf şu şekilde olmalıdır:
+```
+<ossec_config>
+  <client>
+    <server-ip>10.10.12.200</server-ip>
+  </client>
+
+  <localfile>
+    <log_format>command</log_format>
+    <command>df -h</command>
+  </localfile>
+
+  <localfile>
+    <log_format>full_command</log_format>
+    <command>netstat -tan |grep LISTEN |grep -v 127.0.0.1 | sort</command>
+  </localfile>
+
+  <localfile>
+    <log_format>full_command</log_format>
+    <command>last -n 5</command>
+  </localfile>
+  
+</ossec_config>
+```
+
+Agent tarafında zorunlu olarak yapılması gereken tanımlamalar bundan ibarettir.
+
+#### Server Tarafındaki Yapılandırma İşlemleri
+Ossec Server tarafında tüm işlemler /var/ossec/etc/shared/agent.conf içerisinde yapılmaktadır. Örnek olarak ismi agent001 olan bir host için default monitoring yapılandırması şu şekilde olmalıdır:
+
+```
+<agent_config name="agent001"> 
+ <syscheck>
+    <!-- Frequency that syscheck is executed - default to every 22 hours -->
+    <frequency>79200</frequency>
+
+    <!-- Directories to check  (perform all possible verifications) -->
+    <directories check_all="yes">/etc,/usr/bin,/usr/sbin</directories>
+    <directories check_all="yes">/bin</directories>
+
+    <!-- Files/directories to ignore -->
+    <ignore>/etc/mtab</ignore>
+    <ignore>/etc/mnttab</ignore>
+    <ignore>/etc/hosts.deny</ignore>
+    <ignore>/etc/mail/statistics</ignore>
+    <ignore>/etc/random-seed</ignore>
+    <ignore>/etc/adjtime</ignore>
+    <ignore>/etc/httpd/logs</ignore>
+    <ignore>/etc/utmpx</ignore>
+    <ignore>/etc/wtmpx</ignore>
+    <ignore>/etc/cups/certs</ignore>
+    <ignore>/etc/dumpdates</ignore>
+    <ignore>/etc/svc/volatile</ignore>
+
+    <!-- Windows files to ignore -->
+    <ignore>C:\WINDOWS/System32/LogFiles</ignore>
+    <ignore>C:\WINDOWS/Debug</ignore>
+    <ignore>C:\WINDOWS/WindowsUpdate.log</ignore>
+    <ignore>C:\WINDOWS/iis6.log</ignore>
+    <ignore>C:\WINDOWS/system32/wbem/Logs</ignore>
+    <ignore>C:\WINDOWS/system32/wbem/Repository</ignore>
+    <ignore>C:\WINDOWS/Prefetch</ignore>
+    <ignore>C:\WINDOWS/PCHEALTH/HELPCTR/DataColl</ignore>
+    <ignore>C:\WINDOWS/SoftwareDistribution</ignore>
+    <ignore>C:\WINDOWS/Temp</ignore>
+    <ignore>C:\WINDOWS/system32/config</ignore>
+    <ignore>C:\WINDOWS/system32/spool</ignore>
+    <ignore>C:\WINDOWS/system32/CatRoot</ignore>
+  </syscheck>
+
+  <rootcheck>
+    <rootkit_files>/var/ossec/etc/shared/rootkit_files.txt</rootkit_files>
+    <rootkit_trojans>/var/ossec/etc/shared/rootkit_trojans.txt</rootkit_trojans>
+    <system_audit>/var/ossec/etc/shared/system_audit_rcl.txt</system_audit>
+    <system_audit>/var/ossec/etc/shared/cis_debian_linux_rcl.txt</system_audit>
+    <system_audit>/var/ossec/etc/shared/cis_rhel_linux_rcl.txt</system_audit>
+    <system_audit>/var/ossec/etc/shared/cis_rhel5_linux_rcl.txt</system_audit>
+  </rootcheck>
+
+  <active-response>
+    <disabled>yes</disabled>
+  </active-response>
+
+  <!-- Files to monitor (localfiles) -->
+
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/messages</location>
+  </localfile>
+
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/authlog</location>
+  </localfile>
+
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/secure</location>
+  </localfile>
+
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/xferlog</location>
+  </localfile>
+
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/maillog</location>
+  </localfile>
+</agent_config>
+```
+
+Gördüğünüz gibi ilgili yapılandırma, aslında agent tarafında tanımladığımız yapılandırmanın aynısı. Burada sadece <agent_config name=”agent001“> şeklinde agent’imizin ismini belirterek yapılandırmanın sadece ilgili agent’a uygulanması gerektiğini söylüyoruz.
+
+Bu şekilde birden çok host için tanımlama <agent_config name=”agent ismi“> </agent_config> şeklindeki tagler içerisine yazılarak spefisik olarak tanımlanabilmektedir. OS bazlı tanımlama için ise <agent_config os=”Linux (ya da) Windows“> şeklinde bir kategorizasyon uygulanabilmektedir.
+
+Tanımlamaların ardından, hem server hem de agent tarafından ossec servisinin restart edilmesi gerekiyor:
+```
+/var/ossec/bin/ossec-control restart
+```
+
+Bu şekilde yapılandırma merkezi bir şekilde düzenlenmiş oluyor.
+Not: Ossec kendi içerisinde bir caching mekanizması kullandığından dolayı değişikliklerin yansıması biraz zaman alabilmektedir.
