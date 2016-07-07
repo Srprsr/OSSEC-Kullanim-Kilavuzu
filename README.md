@@ -292,10 +292,10 @@ In the active-response configuration, you bind the commands (created) to events.
 > * **disable:** Disables the active response capabilities if set to yes. If this is set, active response will not work.
 > * **command:** Used to link the response to the command
 > * **location:** Where the command should be executed. You have four options:
->> * **local:** on the agent that generated the event
->> * **server:** on the OSSEC server
->> * **defined-agent:** on a specific agent (when using this option, you need to set the agent_id to use)
->> * **all:** or everywhere.
+> > * **local:** on the agent that generated the event
+> > * **server:** on the OSSEC server
+> > * **defined-agent:** on a specific agent (when using this option, you need to set the agent_id to use)
+> > * **all:** or everywhere.
 > * **agent_id:** The ID of the agent to execute the response (when defined-agent is set).
 > * **level:** The response will be executed on any event with this level or higher.
 > * **timeout:** How long until the reverse command is executed (IP unblocked, for example).
