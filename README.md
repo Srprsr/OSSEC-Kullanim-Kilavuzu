@@ -300,6 +300,33 @@ In the active-response configuration, you bind the commands (created) to events.
 > * **level:** The response will be executed on any event with this level or higher.
 > * **timeout:** How long until the reverse command is executed (IP unblocked, for example).
 
+##### Active Response Tools
+By default, the ossec hids comes with the following pre-configured active-response tools:
+* **host-deny.sh:** Adds an IP to the /etc/hosts.deny file (most Unix systems).
+* **firewall-drop.sh** (iptables): Adds an IP to the iptables deny list (Linux 2.4 and 2.6).
+* **firewall-drop.sh (ipfilter):** Adds an IP to the ipfilter deny list (FreeBSD, NetBSD and Solaris).
+* **firewall-drop.sh (ipfw):** Adds an IP to the ipfw deny table (FreeBSD).
+
+> ```
+> Note
+> On IPFW we use the table 1 to add the IPs to be blocked. We also set this table as deny in the beginning of the firewall list. If you use the table 1 for anything else, please change the script to use a different table id.
+> ```
+
+* **firewall-drop.sh (ipsec):** Adds an IP to the ipsec drop table (AIX).
+* **pf.sh (pf):** Adds an IP to a pre-configured pf deny table (OpenBSD and FreeBSD).
+
+> ```
+> Note
+> On PF, you need to create a table in your config and deny all the traffic to it. Add the following lines at the beginning of your rules and reload pf (pfctl -F all && pfctl -f /etc/pf.conf): table <ossec_fwtable> persist #ossec_fwtable
+block in quick from <ossec_fwtable> to any block out quick from any to <ossec_fwtable>
+> ```
+
+* **firewalld-drop.sh (firewalld):** Adds a rich-rule to block an IP to firewalld (Linux with firewalld enabled).
+
+> ```
+> Note
+> You must manually enable this script in ossec.conf if you have firewalld enabled. The script will add (and remove) a rich-rule that drops all incoming communication from the supplied srcip.
+> ```
 
 #OSSEC BİLEŞENLERİ
 * [Manager](#manager)
