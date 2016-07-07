@@ -161,8 +161,8 @@ Bu yapılandırma seçenekleri yöneticisi yan seçenekleri auto_ignore ve alert
 ##Active Response
 OSSEC’in aktive response özelliği sistemde oluşan bir problem için otomatik aksiyonlar almak üzere kullanılmaktadır. Örneğin web sunucunuzu tarayan bir saldırgan’ı, web loglarından tespit edip saldırgan’ın *ip adresinin firewall üzerinden bloklanması OSSEC’in active response özelliği* ile mümkündür.
 
-#### Creating Customized Active Responses
-##### Creating the command
+#### Özel Active Response Oluşturmak
+##### Command Oluşturmak
 Yapmamız gereken ilk şey OSSEC config yeni bir "command" girdisini yaratmaktır.
 ```
 <command>
@@ -179,7 +179,7 @@ Note
 Örn: <expect>srcip</expect>
 ```
 
-##### Configure the Active response
+##### Active Response'u Yapılandırmak
 Sonra, aktif tepki çalıştırmak için OSSEC yapılandırmanız gerekir. Benim durumumda, ben OSSEC sunucu üzerinde çalıştırmak istediğiniz (yani konum sunucusunu seçin) ve kural 1002 ateş her zaman (1002 rules_id bakınız). Ayrıca seviyesini veya farklı yerlerde belirtebilirsiniz.
 ```
 <active-response>
@@ -189,7 +189,7 @@ Sonra, aktif tepki çalıştırmak için OSSEC yapılandırmanız gerekir. Benim
 </active-response>
 ```
 
-##### Create active response script
+##### Active Response Script'i Oluşturmak
 Biz aktif response komut dosyası oluşturabilirsiniz. mail-test.sh set yürütme izinlerine sahip 'var/OSSEC/active-response/bin' içinde olmalıdır.
 
 **Script'e hangi argümanlar geçirilebilir?**
@@ -200,6 +200,63 @@ Biz aktif response komut dosyası oluşturabilirsiniz. mail-test.sh set yürütm
 > * Rule id
 > * Agent name/host
 > * Filename
+
+```
+#!/bin/sh
+# E-mails an alert - copy at /var/ossec/active-response/bin/mail-test.sh
+# Change e-mail ADDRESSS
+# Author: Daniel Cid
+
+MAILADDRESS="xx@ossec.net"
+ACTION=$1
+USER=$2
+IP=$3
+ALERTID=$4
+RULEID=$5
+
+LOCAL=`dirname $0`;
+cd $LOCAL
+cd ../
+PWD=`pwd`
+
+
+# Logging the call
+echo "`date` $0 $1 $2 $3 $4 $5 $6 $7 $8" >> ${PWD}/../logs/active-responses.log
+
+
+# Getting alert time
+ALERTTIME=`echo "$ALERTID" | cut -d  "." -f 1`
+
+# Getting end of alert
+ALERTLAST=`echo "$ALERTID" | cut -d  "." -f 2`
+
+# Getting full alert
+grep -A 10 "$ALERTTIME" ${PWD}/../logs/alerts/alerts.log | grep -v ".$ALERTLAST: " -A 10 | mail $MAILADDRESS -s "OSSEC Alert"
+```
+##### Restart OSSEC and test
+Yapılandırma işlemi tamamlandıktan sonra, size OSSEC yeniden başlatın ve yapılandırmayı test edebilirsiniz. sana Yukarıdaki örnekte, ben benzer bir segmentasyon hatası mesajı logger komutunu çalıştırabilirsiniz.
+```
+# /var/ossec/bin/ossec-control restart
+# logger "Segmentation Fault"
+```
+/var/ossec/logs/active-response.log dosyası için aşağıdaki komutları gerçekleştirin.
+```
+Fri Jul 03 23:48:31 BRT 2016 /var/ossec/active-response/bin/mail-test.sh add - - 1185590911.25916 1002 /var/log/messages
+```
+E-posta olarak:
+```
+from: root <root@xx.org>
+to: xx@ossec.net
+date: Jul 03,03 2016 11:48 PM
+subject: OSSEC Alert
+
+** Alert 1185590911.25661: mailsl  - syslog,errors,
+2016 Jul 03 23:48:31 xx->/var/log/messages
+Rule: 1002 (level 7) -> 'Unknown problem somewhere in the system.'
+Src IP: (none)
+User: (none)
+Jul 27 23:48:30 xx dcid: Segmentation Fault 123
+```
 
 
 #OSSEC BİLEŞENLERİ
