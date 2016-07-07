@@ -130,32 +130,32 @@ Sadece eventchannel kayıt formatı ile kullanılır. OSSEC işleyecek olayları
 OSSEC’in bir diğer görevi de sistemlerde periyodik olarak rootkit taraması yapmaktır. Bu şekilde sunucuların herhangi birinde  bir rootkit, trojan ya da virus’ün varlığı anında tespit edilir ve bildirilir.
 
 #### Rootkit Detection Yapılandırma Seçenekleri
-These configuration options can be specified in each agent’s ossec.conf, except auto_ignore and alert_new_file which are manager side options. If the ignore option is specified on the manager the setting becomes global for all agents.
+Bu yapılandırma seçenekleri yöneticisi yan seçenekleri auto_ignore ve alert_new_file hariç, her ajanın ossec.conf belirtilebilir. Özel olarak belirtilmişse ayar tüm ajanlar için küresel hale gelir.
 
-| Yapılandırma Adı | Açıklama                                                                              | İzin Verilen                                           | Varsayılan                                       |
-| ---------------- |:-------------------------------------------------------------------------------------:| ------------------------------------------------------:| ------------------------------------------------:|
-| rootkit_files    | This option can be used to change the location of the rootkit files database.         | A file with the rootkit files signatures               | /etc/shared/rootkit_files.txt                    |
-| rootkit_trojans  | This option can be used to change the location of the rootkit trojans database.       | A file with the trojans signatures                     | /etc/shared/rootkit_trojans.txt                  |
-| windows_malware  |                                                                                       |                                                        |                                                  |
-| windows_audit    |                                                                                       |                                                        |                                                  |
-| windows_apps     |                                                                                       |                                                        |                                                  |
-| systems_audit    |                                                                                       |                                                        |                                                  |
-| scan_all         | Tells rootcheck to scan the whole system (may lead to some false positives).          | yes/no                                                 | no                                               |
-| frequency        | Frequency that the rootcheck is going to be executed (in seconds).                    | Saniye cinsinden zaman                                 | 36000 sn                                         |
-| disabled         | Disables the execution of rootcheck.                                                  | yes/no                                                 | no                                               |
-| check_dev        | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
-| check_files      | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
-| check_if         | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
-| check_pids       | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
-| check_policy     | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
-| check_ports      | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
-| check_sys        | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
-| check_trojans    | Enable or disable the checking of trojans                                             | yes/no                                                 | yes                                              |
-| check_unixaudit  | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
-| check_winapps    | Enable or disable the checking of something                                           | yes/no                                                 | yes                                              |
-| check_winaudit   | Enable or disable the checking of something                                           | 1/0                                                    | 1                                                |
-| check_winmalware | Enable or disable the checking of Windows malware.                                    | yes/no                                                 | yes                                              |
-| skip_nfs         | Specifies if rootcheck should scan network mounted filesystems.                       | yes/no                                                 | no                                               |
+| Yapılandırma Adı | Açıklama                                                                                 | İzin Verilen                                           | Varsayılan                                       |
+| ---------------- |:----------------------------------------------------------------------------------------:| ------------------------------------------------------:| ------------------------------------------------:|
+| rootkit_files    | Bu seçenek rootkit dosyalarını veritabanının konumunu değiştirmek için kullanılabilir.   | A file with the rootkit files signatures               | /etc/shared/rootkit_files.txt                    |
+| rootkit_trojans  | Bu seçenek rootkit trojanlerinin veritabanının konumunu değiştirmek için kullanılabilir. | A file with the trojans signatures                     | /etc/shared/rootkit_trojans.txt                  |
+| windows_malware  |                                                                                          |                                                        |                                                  |
+| windows_audit    |                                                                                          |                                                        |                                                  |
+| windows_apps     |                                                                                          |                                                        |                                                  |
+| systems_audit    |                                                                                          |                                                        |                                                  |
+| scan_all         | Tüm sistemi taramasını söyle (bu baze false positive durumlara sebep olur).              | yes/no                                                 | no                                               |
+| frequency        | Frequency that the rootcheck is going to be executed (in seconds).                       | Saniye cinsinden zaman                                 | 36000 sn                                         |
+| disabled         | Disables the execution of rootcheck.                                                     | yes/no                                                 | no                                               |
+| check_dev        | Enable or disable the checking of something                                              | yes/no                                                 | yes                                              |
+| check_files      | Enable or disable the checking of something                                              | yes/no                                                 | yes                                              |
+| check_if         | Enable or disable the checking of something                                              | yes/no                                                 | yes                                              |
+| check_pids       | Enable or disable the checking of something                                              | yes/no                                                 | yes                                              |
+| check_policy     | Enable or disable the checking of something                                              | yes/no                                                 | yes                                              |
+| check_ports      | Enable or disable the checking of something                                              | yes/no                                                 | yes                                              |
+| check_sys        | Enable or disable the checking of something                                              | yes/no                                                 | yes                                              |
+| check_trojans    | Enable or disable the checking of trojans                                                | yes/no                                                 | yes                                              |
+| check_unixaudit  | Enable or disable the checking of something                                              | yes/no                                                 | yes                                              |
+| check_winapps    | Enable or disable the checking of something                                              | yes/no                                                 | yes                                              |
+| check_winaudit   | Enable or disable the checking of something                                              | 1/0                                                    | 1                                                |
+| check_winmalware | Enable or disable the checking of Windows malware.                                       | yes/no                                                 | yes                                              |
+| skip_nfs         | Specifies if rootcheck should scan network mounted filesystems.                          | yes/no                                                 | no                                               |
 
 
 ##Active Response
