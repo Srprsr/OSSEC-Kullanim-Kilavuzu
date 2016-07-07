@@ -258,10 +258,11 @@ User: (none)
 Jul 27 23:48:30 xx dcid: Segmentation Fault 123
 ```
 #### UNIX: Active Response Yapılandırması
-The Active response configuration is divided into two parts. In the first one you configure the commands you want to execute. In the second one, you bind the commands to rules or events.
+Active Response yapılandırması iki bölüme ayrılmıştır. İlkinde sen yürütmek istediğiniz komutları yapılandırır, İkinci durumda ise, kurallar ya da olayları komutlara bağlarsınız.
 
-##### Commands Configuration
-In the commands configuration you create new “commands” to be used as responses. You can have as many commands as you want. Each one should be inside their own “command” element. 
+##### Komut Yapılandırması
+
+Komut yapılandırmada yeni "commands" yeni tepkiler olarak kullanılmak üzere oluşturursunuz. İstediğiniz gibi birçok komutları olabilir. Her biri kendi "command" tagi içinde olmalıdır.
 ```
 <command>
     <name>The name (A-Za-Z0-9)</name>
@@ -270,13 +271,13 @@ In the commands configuration you create new “commands” to be used as respon
     <timeout_allowed>yes/no</timeout_allowed>
 </command>
 ```
-> * **name:** Used to link the command to the response.
-> * **executable:** It must be a file (with exec permissions) inside “/var/ossec/active-response/bin”. You don’t need to provide the whole path.
-> * **expect:** The arguments this command is expecting (options are srcip and username).
-> * **timeout_allowed:** Specifies if this command supports timeout.
+> * **name:** Command'in mi.
+> * **executable:** Çalıştırılabilir iznine sahip bir dosya olmalıdır ve bu path'in içinde olmalıdır: “/var/ossec/active-response/bin”.
+> * **expect:** (Seçenekler: srcip/username).
+> * **timeout_allowed:** command'in zaman aşımına uğramasını isterseniz bu alanı doldurabilirsiniz..
 
-##### Responses Configuration
-In the active-response configuration, you bind the commands (created) to events. You can have as many responses as you want. Each one should be inside their own “active-response” element. For further information please see the <../../syntax/head_ossec_config.active-response.html#example-active-response-con figurations>_.
+##### Geri Dönüşlerin Yapılandırılması
+Aktif-response yapılandırmada, olaylara (oluşturulan) komutları bağlar. İstediğiniz kadar response olabilir. Her biri kendi "aktif-response" elemanı içinde olmalıdır.
 ```
 <active-response>
     <disabled>Completely disables active response if "yes"</disabled>
@@ -289,43 +290,43 @@ In the active-response configuration, you bind the commands (created) to events.
     <timeout>Time to block</timeout>
 </active-response>
 ```
-> * **disable:** Disables the active response capabilities if set to yes. If this is set, active response will not work.
-> * **command:** Used to link the response to the command
-> * **location:** Where the command should be executed. You have four options:
-> **local:** on the agent that generated the event
-> **server:** on the OSSEC server
-> **defined-agent:** on a specific agent (when using this option, you need to set the agent_id to use)
-> **all:** or everywhere.
-> * **agent_id:** The ID of the agent to execute the response (when defined-agent is set).
-> * **level:** The response will be executed on any event with this level or higher.
-> * **timeout:** How long until the reverse command is executed (IP unblocked, for example).
+> * **disable:** Active-responsu kapatır.
+> * **command:** responsu command'e bağlamak için kullanılır
+> * **location:** Komutun nerede çalışacağını belirtir. 4 seçeneğiniz var
+> **local:** Agent'ta
+> **server:** OSSEC server'da
+> **defined-agent:** özellikle belirtilmiş bir agent'ta (Bunu kullanmak isterseniz agent_id set etmeniz gerekir.)
+> **all:** her yerde.
+> * **agent_id:** Responsu çalışataracak olan agent id'si (yukarıda location olarak defined-agent seçilirse kullanılır).
+> * **level:** Responsun çalışacağı eventin seviyesini belirler.
+> * **timeout:** Ne kadar süre çalışacağını belirtir. (Örn: IP unblocked).
 
-##### Active Response Tools
-By default, the ossec hids comes with the following pre-configured active-response tools:
-* **host-deny.sh:** Adds an IP to the /etc/hosts.deny file (most Unix systems).
-* **firewall-drop.sh** (iptables): Adds an IP to the iptables deny list (Linux 2.4 and 2.6).
-* **firewall-drop.sh (ipfilter):** Adds an IP to the ipfilter deny list (FreeBSD, NetBSD and Solaris).
-* **firewall-drop.sh (ipfw):** Adds an IP to the ipfw deny table (FreeBSD).
+##### Active Response Araçları
+Varsayılan olarak, OSSEC HIDS aşağıda daha önce yapılandırılmış araçlar ile birlikte gelir.
+* **host-deny.sh:** /etc/hosts.deny dosyasına bir IP adresi ekler. (bir çok Unix sistemde).
+* **firewall-drop.sh** (iptables): iptables deny list'e bir IP adresi ekler.  (Linux 2.4 and 2.6).
+* **firewall-drop.sh (ipfilter):** ipfilter deny list'e bir IP adresi ekler.  (FreeBSD, NetBSD and Solaris).
+* **firewall-drop.sh (ipfw):** ipfw deny table'a bir IP adresi ekler.  (FreeBSD).
+
+> ```
+> Not
+> Uzerinde IPFW biz IP'ler bloke edilecek eklemek için tablo 1'i kullanın. Güvenlik duvarı listesinin başında deny gibi bu tabloyu ayarlayın. Eğer başka bir şey için tablo 1 kullanıyorsanız, farklı bir tablo kimliği kullanmak için komut dosyasını değiştirin.
+> ```
+
+* **firewall-drop.sh (ipsec):** ipsec drop table'a bir IP adresi ekler.  (AIX).
+* **pf.sh (pf):**  pre-configured pf deny table'a bir IP adresi ekler. (OpenBSD and FreeBSD).
+
+> ```
+> Not
+> PF, sizin config bir tablo oluşturmak ve buna tüm trafiği engellemek gerekir. senin kuralların başında aşağıdaki satırları ekleyin ve pf yeniden (pfctl -F tüm && pfctl -f /etc/pf.conf): Tablo <ossec_fwtable> #ossec_fwtable devam
+için herhangi çabuk herhangi bir blok dışarı <ossec_fwtable> dan hızlı blok <ossec_fwtable>
+> ```
+
+* **firewalld-drop.sh (firewalld):** firewalld'a bir IP adresi ekler (firewalld aktif olan Linux sistemlerde).
 
 > ```
 > Note
-> On IPFW we use the table 1 to add the IPs to be blocked. We also set this table as deny in the beginning of the firewall list. If you use the table 1 for anything else, please change the script to use a different table id.
-> ```
-
-* **firewall-drop.sh (ipsec):** Adds an IP to the ipsec drop table (AIX).
-* **pf.sh (pf):** Adds an IP to a pre-configured pf deny table (OpenBSD and FreeBSD).
-
-> ```
-> Note
-> On PF, you need to create a table in your config and deny all the traffic to it. Add the following lines at the beginning of your rules and reload pf (pfctl -F all && pfctl -f /etc/pf.conf): table <ossec_fwtable> persist #ossec_fwtable
-block in quick from <ossec_fwtable> to any block out quick from any to <ossec_fwtable>
-> ```
-
-* **firewalld-drop.sh (firewalld):** Adds a rich-rule to block an IP to firewalld (Linux with firewalld enabled).
-
-> ```
-> Note
-> You must manually enable this script in ossec.conf if you have firewalld enabled. The script will add (and remove) a rich-rule that drops all incoming communication from the supplied srcip.
+> Eğer firewalld etkin ise yukarıdaki komut kullanılmalıdır.
 > ```
 
 #OSSEC BİLEŞENLERİ
