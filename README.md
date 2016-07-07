@@ -161,6 +161,9 @@ Bu yapılandırma seçenekleri yöneticisi yan seçenekleri auto_ignore ve alert
 ##Active Response
 OSSEC’in aktive response özelliği sistemde oluşan bir problem için otomatik aksiyonlar almak üzere kullanılmaktadır. Örneğin web sunucunuzu tarayan bir saldırgan’ı, web loglarından tespit edip saldırgan’ın *ip adresinin firewall üzerinden bloklanması OSSEC’in active response özelliği* ile mümkündür.
 
+![alt text](http://i67.tinypic.com/2i96seq.png "OSSEC Active Response")
+
+
 #### Özel Active Response Oluşturmak
 ##### Command Oluşturmak
 Yapmamız gereken ilk şey OSSEC config yeni bir "command" girdisini yaratmaktır.
